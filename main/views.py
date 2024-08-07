@@ -22,8 +22,9 @@ class WritersDetailView(DetailView):
     
     def get(self, request, pk):
         writer = self.get_object()
-        form = MessageForm() 
-        context = {'writer': writer, 'form': form}
+        persons = Writers.objects.order_by('name')
+        form = MessageForm()
+        context = {'writer':writer, 'persons':persons, 'form':form}
         return render(request, self.template_name, context)
 
     def post(self, request, pk):
@@ -31,9 +32,11 @@ class WritersDetailView(DetailView):
         response = writers_dict[pk].response(message)
         return JsonResponse({'message': message, 'response': response})
 
+
 def index(request):
     persons = Writers.objects.order_by('name')
     return render(request, 'main/index.html', {'persons': persons})
+
 
 def faq(request):
     if request.method == 'POST':
