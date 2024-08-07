@@ -192,67 +192,17 @@
 {% endblock %}
 
 {% block aside %}
-        <a href="/pushkin/">
-            <li>
-                <div>
-                    <img src= "/media/img/Pushkin.PNG" alt="">
-                    <span class="name">Александр Пушкин</span>
-                    <span class="last-message"></span>
-                </div>
-            </li>
-        </a>
-        <a href="/akhmatova/">
-            <li>
-                <div>
-                    <img src= "/media/img/Akhmatova.PNG" alt="">
-                    <span class="name">Анна Ахматова</span>
-                    <span class="last-message"></span>
-                </div>
-            </li>
-        </a>
-        <a href="/mayakovsky/">
-            <li>
-                <div>
-                    <img src= "/media/img/Mayakovsky.PNG" alt="">
-                    <span class="name">Владимир Маяковский</span>
-                    <span class="last-message"></span>
-                </div>
-            </li>
-        </a>
-        <a href="/gorky/">
-            <li>
-                <div>
-                    <img src= "/media/img/Gorky.PNG" alt="">
-                    <span class="name">Максим Горький</span>
-                    <span class="last-message"></span>
-                </div>
-            </li>
-        </a>
-        <a href="/tsvetaeva/">
-            <li>
-                <div>
-                    <img src= "/media/img/Tsvetaeva.PNG" alt="">
-                    <span class="name">Марина Цветаева</span>
-                    <span class="last-message"></span>
-                </div>
-            </li>
-        </a>
-        <a href="/lermontov/">
-            <li>
-                <div>
-                    <img src= "/media/img/Lermontov.PNG" alt="">
-                    <span class="name">Михаил Лермонтов</span>
-                    <span class="last-message"></span>
-                </div>
-            </li>
-        </a>
-        <a href="/esenin/">
-            <li>
-                <div>
-                    <img src= "/media/img/Esenin.PNG" alt="">
-                    <span class="name">Сергей Есенин</span>
-                    <span class="last-message"></span>
-                </div>
-            </li>
-        </a>
+
+  {% for person in persons %}
+      <a href="/{{person.surname}}/">
+        <li>
+            <div>
+                <img src= "/media/{{person.photo}}" alt="">
+                <span class="name">{{person.name}}</span>
+                <span class="last-message"></span>
+            </div>
+        </li>
+      </a>
+  {% endfor %}
+  
 {% endblock %}
