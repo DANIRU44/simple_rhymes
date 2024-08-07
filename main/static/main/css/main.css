@@ -1,0 +1,472 @@
+@import url('https://fonts.googleapis.com/css2?family=Mulish:wght@200;300;400;500;600;700;800&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+}
+
+body {
+    height: auto;
+    background-color: #e7e8eb;
+    margin-bottom: 0px;
+}
+
+#header #logo {
+    position: relative;
+    width: 320px;
+    height: 45px;
+    margin-left: 5%;
+    margin-top: 1%;
+}
+
+#header {
+    width: 100%;
+    height: 8.25%;
+    text-align: left;
+    border-bottom: 3px solid #386641;
+    background: #47942d;
+    float: left;
+}
+
+#main {
+    margin-top: 15px;
+    height: 650px;
+    width: 66.77%;
+    background: #ffffff;
+    float: right;
+    position: relative;
+    margin-right: 7.5%;
+    text-align: center;
+    border-radius: 15px;
+}
+
+#main span {
+    font-family: 'Mulish', sans-serif;
+    line-height: 30px;
+    color: #a3a4a7;
+    font-size: 1.5rem;
+    display: inline-block;
+    vertical-align: middle;
+    margin-top: 20%;
+}
+
+#main_name{
+    margin-top: 1.7em;
+    margin-left: 0.7em;
+    float: left;
+    font-family: 'Mulish', sans-serif;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+a #bio_button {
+    overflow: hidden;
+    float: left;
+    margin-top: 15px;
+    margin-left: 5%;
+    height: 7%;
+    width: 20%;
+    background: #27a331;
+    border-radius: 15px;
+    position: relative;
+    font-family: 'Mulish', sans-serif;
+    font-weight: bolder;
+    text-align: center;
+    line-height: 3.5em;
+}
+
+a #bio_button h1 {
+    color: white;
+}
+
+a #bio_button:hover {
+    font-size: large;
+    line-height: 3em;
+    background: #208028;
+}
+
+#aside {
+    margin-top: 0.8%;
+    height: 580px;
+    width: 20%;
+    background: #ffffff;
+    float: left;
+    position: relative;
+    margin-left: 5%;
+    margin-bottom: 30px;
+    border-radius: 15px;
+    list-style-type: none;
+    white-space: nowrap;
+    overflow: hidden; 
+    text-overflow: ellipsis;
+    overflow-y: auto; 
+}
+
+#aside::-webkit-scrollbar {
+    width: 0;
+  }
+
+a.text:active{
+    text-decoration: none;
+}
+
+#aside div:not(img) {
+    font-family: 'Mulish', sans-serif;
+    font-weight: bold;
+    font-size: 0.93rem;
+    width: 100%;
+    height: 10.4%;
+    background: #ffffff;
+    text-decoration: none;
+    border-radius: 15px;
+    position: relative;
+    float: left;
+}
+
+#aside div:hover {
+    background: #cccccc;
+  }
+
+#aside div:hover .last-message {
+    color: white;
+  }
+
+#aside img{
+    float: left;
+    border-radius: 25px;
+    margin: 7px;
+}
+
+a:visited {
+    color:#000
+}
+
+
+#aside span {
+    flex-direction: column;
+}
+
+#aside .name {
+    position: relative;
+    top: 8px;
+    text-decoration: none;
+    display: block;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+#aside .last-message {
+    position: relative;
+    text-decoration: none;
+    display: block;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    top: 15px;
+    font-size: 0.85rem;
+    color: #cecece;
+    
+}
+
+#aside li {
+    list-style-type: none; 
+    display: block;
+}
+
+#footer {
+    margin-right: 100px;
+}
+
+#footer span {
+    color: black;
+    margin-right: 30px;
+    font-family: 'Mulish', sans-serif;
+    margin-top: 35px;
+}
+
+#footer span:hover {
+    color: black;
+    text-decoration: underline;
+    text-decoration: none;
+    transform: scale(1.05);
+    font-weight: bolder;
+}
+
+#FAQ,
+#me,
+#support {
+    position: relative;
+    float: right;
+    margin-bottom: 2em;
+}
+
+#main_faq {
+    margin-top: 15px;
+    width: 68%;
+    background: #ffffff;
+    position: relative;
+    float: left;
+    margin-left: 15%;
+    border-radius: 15px;
+}
+
+#main_faq span {
+    font-family: 'Mulish', sans-serif;
+    line-height: 30px;
+    color: #a3a4a7;
+    font-size: 1.7rem;
+    display: inline-block;
+    vertical-align: middle;
+    margin-top: 30px;
+    margin-left: 20px;
+}
+
+#main_faq h3 {
+    font-family: 'Mulish', sans-serif;
+    margin-top: 10px;
+    margin-left: 20px;
+}
+
+#main_faq div {
+    margin-bottom: 40px;
+}
+
+#header_in_main {
+    height: 10%;
+    width: 100%;
+    position: relative;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    border-bottom: 2px solid rgb(216, 216, 216);
+    z-index: 2;
+    overflow: hidden;
+}
+
+#header_in_main img:not(#trach-can) {
+    float: left;
+    border-radius: 25px;
+    margin-left: 30px;
+    margin-top: 7px;
+    width: 50px;
+    height: 50px;
+}
+
+li img {
+    width: 50px;
+    height: 50px;
+}
+
+#main_chat {
+    height: 80%;
+    width: 100%;
+    position: relative;
+    z-index: 1;
+    overflow: auto;
+}
+
+#main_chat::-webkit-scrollbar {
+    width: 0;
+}
+
+.message_block {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin-top: 10px;
+  }
+
+.alert-primary {
+    align-self: flex-end;
+    background: #ecedf0;
+    width: auto;
+    max-width: 45%;
+    word-wrap: break-word;
+    font-family: 'Mulish', sans-serif;
+    font-weight: bold;
+    font-size: 1rem;
+    border-radius: 15px;
+    text-align: left;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-right: 10px;
+}
+
+.alert-success{
+    background: #c6e5bc;
+    width: auto;
+    max-width: 45%;
+    word-wrap: break-word;
+    font-family: 'Mulish', sans-serif;
+    font-weight: bold;
+    font-size: 1rem;
+    border-radius: 15px;
+    text-align: left;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+    align-self: flex-start;
+    margin-left: 10px;
+}
+
+#main_bottom {
+    height: 10%;
+    width: 100%;
+    position: absolute;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    box-sizing: border-box;
+    border-top: 2px solid rgb(216, 216, 216);
+    z-index: 2;
+}
+  
+#main_bottom input {
+    float: left;
+    position: relative;
+    border-radius: 20px;
+    height: 35px;
+    width: 70%;
+    margin-top: 10px;
+    margin-left: 8%;
+    outline: none;
+    border: 2px solid rgb(216, 216, 216);
+    padding-left: 10px;
+    font-family: 'Mulish', sans-serif;
+    font-size: 16px;
+}
+  
+#main_bottom button {
+    position: relative;
+    outline: none;
+    float: left;
+    margin-top: 13px;
+    margin-left: 12px;
+    border-radius: 50px;
+    border: 0;
+    background: white;
+  }
+  
+#main_bottom button:hover {
+    transform: scale(1.12);
+  }
+  
+#main_bottom #send:hover {
+    background: #e7e8eb;
+  }
+
+#clearButton {
+    border: none;
+    background: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+    float: right;
+    margin: 20px;
+}
+
+#clearButton:hover {
+    -webkit-filter: sepia(1) hue-rotate(320deg) saturate(10);
+    filter: sepia(1) hue-rotate(320deg) saturate(10);
+  }
+  
+#clearButton:active {
+    transform: scale(0.95);
+  }
+
+#feed-back {
+    float: left;
+    position: relative;
+    border-radius: 20px;
+    height: 30px;
+    width: 67%;
+    margin-top: 40px;
+    margin-left: 15%;
+    outline: none;
+    border: 2px solid rgb(216, 216, 216);
+    padding-left: 10px;
+    padding-top: 5px;
+    font-family: 'Mulish', sans-serif;
+    font-size: 16px;
+    resize: none;
+}
+
+button {
+    float: left;
+    position: relative;
+    border-radius: 20px;
+    height: 50px;
+    width: 10%;
+    margin-top: 15px;
+    margin-left: 15%;
+    border: none;
+    outline: none;
+    overflow: hidden;
+    font-family: 'Mulish', sans-serif;
+    font-size: 16px;
+    background-color: #9bdc85;
+    font-weight: bold;
+}
+
+button:hover {
+    background-color: #83cb69;
+    font-size: 18px;
+  }
+
+@media screen and (max-width:700px){
+    #main {
+        
+        float: left;
+        margin: 0;
+        width: 100%;
+        height: 100vh;
+    }
+
+    #aside {
+        float: left;
+        margin: 0;
+        height: auto;
+        width: 100%;
+    }
+
+    body {
+        height: auto;
+    }
+
+
+    #header_in_main img:not(#trach-can) {
+        margin: 0;
+        margin-top: 20px;
+        margin-left: 5px;
+    }
+
+    #main_name {
+        margin-top: 45px;
+    }
+    a #bio_button {
+        margin-left: 5%;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        width: auto;
+    }
+    #clearButton {
+        margin: 25px;
+    }
+    #feed-back {
+        margin: 0;
+        margin-left: 20px;
+        margin-top: 20px;
+
+    }
+
+    #main_faq {
+        margin: 0;
+        margin-top: 15px;
+        width: 100%;
+        height: auto;
+    }
+
+}

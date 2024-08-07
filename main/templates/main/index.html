@@ -1,0 +1,30 @@
+{% extends 'main/layout.html' %}
+
+{% block title %} Neural writers {% endblock %}
+
+{% block main %}
+
+<span>
+    <p id="text"><h4>Привет!</h4>
+    Здесь ты можешь пообщаться с нейронными сетями<br>
+    имитирующими стили речи реальных писателей!<br>
+    Выбирай кто больше нравится и...<br>
+    <h4>Начни диалог!</h4></p>
+</span>
+
+
+{% endblock %}
+
+{% block aside %}
+    {% for el in persons %}
+        <a href="{{el.surname}}">
+            <li>
+                <div>
+                    <img src= "{{ el.photo.url }}" alt="" width="50px" height="50px">
+                    <span class="name">{{ el.name }}</span>
+                </div>
+            </li>
+        </a>
+    {% endfor %}
+ 
+{% endblock %}

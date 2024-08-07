@@ -1,0 +1,258 @@
+{% extends 'main/layout.html' %}
+
+{% block title %} {{writer.name}} {% endblock %}
+
+{% block main %}
+
+<script>
+    window.addEventListener('load', function() {
+      if (localStorage.getItem('scrollPosition')) {
+        var scrollPosition = parseInt(localStorage.getItem('scrollPosition'));
+        window.scrollTo(0, scrollPosition);
+      }
+
+      let key = window.location.pathname;
+      const messagesList = document.querySelector(".messages-list");
+      const messageHistory = JSON.parse(localStorage.getItem(key));
+      
+      messageHistory.forEach((message, index) => {
+        const li = document.createElement('li');
+        const messageBlock = document.createElement('div');
+        messageBlock.className = 'message_block';
+        const alertDiv = document.createElement('div');
+        alertDiv.className = index % 2 === 0 ? 'alert-primary' : 'alert-success';
+        alertDiv.innerHTML = message;
+        messageBlock.appendChild(alertDiv);
+        li.appendChild(messageBlock);
+        messagesList.appendChild(li);
+      });
+    });
+
+    window.addEventListener('beforeunload', function() {
+      var scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+      localStorage.setItem('scrollPosition', scrollPosition);
+    });
+
+    window.onload = function() {
+      scrollToBottom(document.getElementById('main_chat'));
+    };
+    
+    function scrollToBottom(element) {
+      element.scrollTop = element.scrollHeight;
+
+      const asideElement = document.getElementById('aside');
+      const chats = asideElement.querySelectorAll('a');
+      const lastMessages = JSON.parse(localStorage.getItem('last-messages'));
+      
+      chats.forEach(chat => {
+        const chatId = chat.getAttribute('href');
+      
+        if (lastMessages && lastMessages.hasOwnProperty(chatId)) {
+          const lastMessageElement = chat.querySelector('.last-message');
+          lastMessageElement.textContent = lastMessages[chatId];
+        }
+      });
+    }
+    
+  </script>
+  
+    <div id='header_in_main'>
+        <a href="../bio/{{writer.surname}}"><img src="{{ writer.photo.url }}" title="{{writer.description}}" alt=""></a>
+        <div id="main_name">{{writer.name}}</div>
+        <button id="clearButton" onclick="updatePage()">
+          <img id="trach-can" src="../static/main/img/delete_FILL0_wght400_GRAD0_opsz24.png" alt="Очистить чат" title = "Очистить чат">
+        </button>
+    </div>
+    <script>
+      function updatePage() { location.reload();}
+      
+      document.addEventListener('DOMContentLoaded', () => {
+        const clearButton = document.getElementById('clearButton');
+    
+        clearButton.addEventListener('click', () => {
+          localStorage.removeItem(key);
+
+          const linkElement = document.querySelector(`a[href="${key}"]`);
+          const chatElement = linkElement.querySelector(".last-message");
+          chatElement.textContent = '';
+          const lastMessages = JSON.parse(localStorage.getItem('last-messages'));
+          delete lastMessages[key];
+          localStorage.setItem('last-messages', JSON.stringify(lastMessages));
+        });
+    });
+    </script>
+    <div id="main_chat">
+            <ul class="list-unstyled messages-list">
+              <li class="message received">
+                <div class="message_block">
+                  <div class="message-content">
+                  </div>
+                </div>
+              </li>
+            </ul>
+          <br /><br />
+    </div>
+
+    <div id="main_bottom">
+    <form class="message-form" accept-charset="UTF-8">
+          {%csrf_token%}
+          <div class="input-group">
+            <input type="text" class="form-control message-input"/>
+          </div>
+    </form>
+    </div>
+      
+      <script>
+        let key = window.location.pathname;
+        {% comment %} Сохраняем блоки в константы {% endcomment %}
+        const messagesList = document.querySelector(".messages-list");
+        const messageForm = document.querySelector(".message-form");
+        const messageInput = document.querySelector(".message-input");
+      
+        {% comment %} обратабываем нажатие кнопки отправить {% endcomment %}
+        messageForm.addEventListener("submit", (event) => {
+          event.preventDefault();
+      
+          const message = messageInput.value.trim();
+          if (message.length === 0) {
+            return;
+          }
+      
+          {% comment %} отображаем наше сообщение на странице {% endcomment %}
+          const messageItem = document.createElement("li");
+          messageItem.classList.add("message", "sent");
+          messageItem.innerHTML = `
+              <div class="message_block">
+                  <div class="alert-primary">
+                      ${message}
+                  </div>
+              </div>`;
+          messagesList.appendChild(messageItem);
+          messageInput.value = "";
+
+          let messageHistory = JSON.parse(localStorage.getItem(key)) || []
+          messageHistory.push(message); 
+          localStorage.setItem(key, JSON.stringify(messageHistory));
+      
+          {% comment %}
+          Данный код выполняет следующие действия:
+      
+          Отправляет POST-запрос на сервер (пустой URL), используя функцию fetch.
+          В заголовках запроса указывается тип контента "application/x-www-form-urlencoded".
+          В теле запроса передаются параметры в формате URLSearchParams. Параметры включают токен csrfmiddlewaretoken (который берется из элемента с атрибутом name=csrfmiddlewaretoken) и переменную message со значением message.
+          Затем обрабатывается ответ от сервера в формате JSON с помощью цепочки вызовов .then().
+          Полученные данные сохраняются в переменной data.response.
+          Создается новый HTML-элемент <li>, который представляет сообщение.
+          Устанавливаются необходимые классы для элемента и его содержимого.
+          Внутри элемента формируется структура сообщения с полученными данными в переменной response.
+          Элемент добавляется в конец списка сообщений с помощью метода appendChild для элемента с классом messagesList.
+          {% endcomment %}
+      
+          fetch("", {
+            method: "POST",
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: new URLSearchParams({
+              csrfmiddlewaretoken: document.querySelector(
+                "[name=csrfmiddlewaretoken]"
+              ).value,
+              message: message,
+            }),
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              const response = data.response;
+              const messageItem = document.createElement("li");
+              messageItem.classList.add("message", "received");
+              messageItem.innerHTML = `
+              <div class="message_block">
+                  <div class="alert-success">
+                      ${response}
+                  </div>
+              </div>
+                `;
+            messagesList.appendChild(messageItem);
+
+            let messageHistory = JSON.parse(localStorage.getItem(key)) || [];
+            messageHistory.push(response);
+            localStorage.setItem(window.location.pathname, JSON.stringify(messageHistory));
+
+            let storedMessages = JSON.parse(localStorage.getItem('last-messages')) || {}
+            storedMessages[key] = response;
+            localStorage.setItem('last-messages', JSON.stringify(storedMessages));
+
+            scrollToBottom(document.getElementById('main_chat'));
+
+            const linkElement = document.querySelector(`a[href="${key}"]`);
+            const lastMessageElement = linkElement.querySelector(".last-message");
+            lastMessageElement.textContent = response;
+            });
+        });
+      </script>
+
+{% endblock %}
+
+{% block aside %}
+        <a href="/pushkin/">
+            <li>
+                <div>
+                    <img src= "/media/img/Pushkin.PNG" alt="">
+                    <span class="name">Александр Пушкин</span>
+                    <span class="last-message"></span>
+                </div>
+            </li>
+        </a>
+        <a href="/akhmatova/">
+            <li>
+                <div>
+                    <img src= "/media/img/Akhmatova.PNG" alt="">
+                    <span class="name">Анна Ахматова</span>
+                    <span class="last-message"></span>
+                </div>
+            </li>
+        </a>
+        <a href="/mayakovsky/">
+            <li>
+                <div>
+                    <img src= "/media/img/Mayakovsky.PNG" alt="">
+                    <span class="name">Владимир Маяковский</span>
+                    <span class="last-message"></span>
+                </div>
+            </li>
+        </a>
+        <a href="/gorky/">
+            <li>
+                <div>
+                    <img src= "/media/img/Gorky.PNG" alt="">
+                    <span class="name">Максим Горький</span>
+                    <span class="last-message"></span>
+                </div>
+            </li>
+        </a>
+        <a href="/tsvetaeva/">
+            <li>
+                <div>
+                    <img src= "/media/img/Tsvetaeva.PNG" alt="">
+                    <span class="name">Марина Цветаева</span>
+                    <span class="last-message"></span>
+                </div>
+            </li>
+        </a>
+        <a href="/lermontov/">
+            <li>
+                <div>
+                    <img src= "/media/img/Lermontov.PNG" alt="">
+                    <span class="name">Михаил Лермонтов</span>
+                    <span class="last-message"></span>
+                </div>
+            </li>
+        </a>
+        <a href="/esenin/">
+            <li>
+                <div>
+                    <img src= "/media/img/Esenin.PNG" alt="">
+                    <span class="name">Сергей Есенин</span>
+                    <span class="last-message"></span>
+                </div>
+            </li>
+        </a>
+{% endblock %}

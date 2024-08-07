@@ -1,0 +1,27 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'bio/css/bio_home.css' %}">
+    <link rel="shortcut icon" type="image/png" href="{% static 'bio/img/favicon.ico' %}"/>
+</head>
+<body>
+    <div id="header">
+        <a href="{% url 'index' %}"><img src="{% static 'main/img/logo.png' %}" id="logo"></a>
+    </div> 
+
+    <div id="bio_main">
+        В разработке
+    </div>
+
+    <div id="footer">
+        <a href="https://github.com/DANIRU44" target="_blank" title="Автор"><span id="me">Сделано DANIRU</span></a>
+        <a href="https://www.donationalerts.com/r/daniru44" target="_blank" title="Для светлого будущего"><span id="support">Поддержать</span></a>
+        <a href="{% url 'faq' %}" title="Ответы на вопросы"><span id="FAQ">FAQ</span></a>
+    </div>
+</body>
+</html>

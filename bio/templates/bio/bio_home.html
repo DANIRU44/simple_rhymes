@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Биографии</title>
+    <link rel="stylesheet" href="{% static 'bio/css/bio_home.css' %}">
+    <link rel="shortcut icon" type="image/png" href="{% static 'bio/img/favicon.ico' %}"/>
+</head>
+<body>
+    <div id="header">
+        <a href="{% url 'index' %}"><img src="{% static 'main/img/logo.png' %}" id="logo"></a>
+    </div> 
+
+    <div id="bio_list">
+        {% for el in persons %}
+        <a href='{{ el.surname }}'>
+            <div class="flip">
+                <div class="front" style="background-image: url({{ el.back.url }});">
+                    <h1 class="text-shadow">{{ el.name }}</h1>
+                </div>
+                <div class="back">
+                   <p>{{el.full_description}}</p>
+                </div>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+
+    <div id="footer">
+        <a href="https://github.com/DANIRU44" target="_blank" title="Автор"><span id="me">Сделано DANIRU</span></a>
+        <a href="https://www.donationalerts.com/r/daniru44" target="_blank" title="Для светлого будущего"><span id="support">Поддержать</span></a>
+        <a href="{% url 'faq' %}" title="Ответы на вопросы"><span id="FAQ">FAQ</span></a>
+    </div>
+</body>
+</html>

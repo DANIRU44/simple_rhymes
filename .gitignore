@@ -1,0 +1,10 @@
+__pycache__/
+.vscode
+db.sqlite3
+Akhmatova/
+Esenin/
+Gorky/
+Lermontov/
+Mayakovski/
+Pushkin/
+Tsvetaeva/
